@@ -84,7 +84,8 @@ def export_model(model_name, model, when):
 
     # Export the binary model
     try:
-        saved_model_path = h2o.save_model(model=model, path=".", force=True)
+        # Save the model to a directory (e.g., "./models")
+        saved_model_path = h2o.save_model(model=model, path="./models", force=True)
         logging.info("*** Binary model exported to: " + saved_model_path)
     except Exception as e:
         logging.error("*** Error exporting binary model: " + str(e))
