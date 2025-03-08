@@ -8,7 +8,7 @@ from h2o.estimators.gbm import H2OGradientBoostingEstimator
 
 def train():
     # Setup training parameters
-    when = "20250308_080101"
+    when = "now"
     train_file = "../csv/small.csv"
     ntrees = 80
     max_depth = 16
@@ -54,7 +54,7 @@ def train():
 
 def export_model(model_name, model, when):
     logging.info("*** model: " + str(model))
-    basename = "./" + model_name + "_" + when
+    basename = "./models/" + model_name + "_" + when
 
     # Save model parameters to a JSON file (analogous to model._parms.toJsonString())
     with open(basename + ".json", "w") as f:
@@ -77,7 +77,7 @@ def export_model(model_name, model, when):
 
     # Export the model as a MOJO
     try:
-        mojo_path = model.download_mojo(path=".", get_genmodel_jar=False)
+        mojo_path = model.download_mojo(path="./models", get_genmodel_jar=False)
         logging.info("*** MOJO exported to: " + mojo_path)
     except Exception as e:
         logging.error("*** Error exporting MOJO: " + str(e))
