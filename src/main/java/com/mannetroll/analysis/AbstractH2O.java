@@ -2,6 +2,7 @@ package com.mannetroll.analysis;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ public abstract class AbstractH2O {
     protected static void exportModel(final String modelname, Model model, String when) throws IOException {
         LOGGER.info("*** model: " + model.toString());
         final String basename = "./work/" + modelname + "_" + when;
-        FileUtils.writeStringToFile(new File(basename + ".json"), model._parms.toJsonString());
+        FileUtils.writeStringToFile(new File(basename + ".json"), model._parms.toJsonString(), Charset.defaultCharset());
         final String category = model.modelDescriptor().getModelCategory().name();
         LOGGER.info("*** Category: " + category);
         if (category.equals("Binomial")) {

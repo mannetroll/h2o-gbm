@@ -34,6 +34,11 @@
       <artifactId>h2o-algos</artifactId>
       <version>${h2o.version}</version>
     </dependency>
+    <dependency>
+      <groupId>ai.h2o</groupId>
+      <artifactId>h2o-genmodel</artifactId>
+      <version>${h2o.version}</version>
+    </dependency>
 
     <!-- SLF4J API for logging -->
     <dependency>
