@@ -31,7 +31,6 @@ def main():
 
     train_model(train_file, ntrees, max_depth, when)
     logger.info("Done!")
-    h2o.shutdown(prompt=False)
 
 def train_model(train_file, ntrees, max_depth, when):
     try:
@@ -131,7 +130,8 @@ def export_model(modelname, model, when):
         # Export model as MOJO if available
         try:
             # For MOJO export, h2o provides download_mojo
-            mojo_path = h2o.download_mojo(model, path="./models", get_genmodel_jar=False)
+            #mojo_path = h2o.download_mojo(model, path="./models", get_genmodel_jar=False)
+            mojo_path = model.download_mojo(path="./models")
             # Rename the downloaded MOJO to match our basename
             new_mojo_path = basename + ".zip"
             os.rename(mojo_path, new_mojo_path)
